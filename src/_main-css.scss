@@ -1,0 +1,103 @@
+
+html{
+  font-size:16px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+html, body{
+  height:100%;
+  margin:0;
+}
+body{
+  background-color:aquamarine;
+  display:flex;
+  margin:0;
+  flex-direction:column;
+  width:100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+h1, h2{
+  text-align:center;
+}
+
+main{
+  width:100%;
+  max-width:1000px;
+  margin: 0 auto;
+  box-sizing:border-box;
+  background-color:#dff5f2;
+  flex: 1;
+  display:flex;
+  flex-direction:column;
+}
+form{
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  max-width:300px;
+  gap:1rem;
+  margin:0 auto;
+  input, select{
+    padding:0.5rem;
+    border-radius:10px;
+    border:none;
+    box-shadow: 0 6px 5px rgba(0,0,0,0.4);
+    width:100%;
+  }
+}
+button{
+    width:fit-content;
+    margin:0 auto;
+    padding:0.5rem;
+    cursor:pointer;
+    border-radius:20px;
+    border:none;
+    box-shadow: 0 6px 0 rgba(0,0,0,0.4);
+    margin-bottom:1rem;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    &:active{
+        transform: translateY(2px);
+        box-shadow: 0 3px 0 rgba(0,0,0,0.4);
+    }
+    &:hover{
+
+    }
+  }
+.done{
+    font-weight:bold;
+    margin-left:0.5rem;
+    background-color:#7bd88f;
+}
+.delete{
+    font-weight: bold;
+    margin-left: 0.5rem;
+    background-color:#ca4b3c;
+}
+.formDiv{
+  display:flex;
+  align-items:center;
+  label{
+    width:100px;
+    font-weight: bold;
+    text-decoration:underline;
+    font-size:1.1rem;
+  }
+  input, select{
+    flex:1;
+  }
+}
+ul{
+  margin:0 auto;
+}
+
+hr{
+  border:none;
+  height:3px;
+  background: linear-gradient(to right, transparent, rgba(28, 136, 127, 0.7), transparent);
+  margin: 1rem 0;
+}
+@media (max-width:599px){
+  html{
+    font-size:14px;
+  }
+}
