@@ -100,12 +100,25 @@ const newTodoList = new TodoList();
 function renderTodos(): void{
   //töm listan
   ulTodoList.innerHTML = "";
+
+  //inuti "ny" class TodoList(), välj getTodos() metoden som returnerar array och loopa
   newTodoList.getTodos().forEach((todo, index) => {
     const li = document.createElement("li");
     li.innerHTML = "<b>" + todo.task + "</b>" + " - Prioritet:" + todo.priority;
-    
-    //en klar knapp
-    const doneBtn = document.createElement("button");
+
+    if(todo.completed){
+      li.style.textDecoration = "line-through";
+      li.style.color = "grey";
+    }
+
+    li.appendChild(createDoneBtn(index));
+    li.appendChild(createDelBtn(index));
+    ulTodoList.appendChild(li);
+  })
+}
+
+function createDoneBtn(index: number){
+  const doneBtn = document.createElement("button");
     doneBtn.textContent="✔";
     doneBtn.classList.add("done");
     doneBtn.addEventListener("click", () => {
@@ -113,9 +126,11 @@ function renderTodos(): void{
       newTodoList.saveToLocalStorage();
       renderTodos();
     })
+    return doneBtn;
+}
 
-    //en radera knapp
-    const delBtn = document.createElement("button");
+function createDelBtn(index: number){
+  const delBtn = document.createElement("button");
     delBtn.textContent = "🗑️";
     delBtn.classList.add("delete");
     delBtn.addEventListener("click", () => {
@@ -126,16 +141,9 @@ function renderTodos(): void{
       newTodoList.saveToLocalStorage();
       renderTodos();
     })
-    if(todo.completed){
-      li.style.textDecoration = "line-through";
-      li.style.color = "grey";
-    }
-
-    li.appendChild(doneBtn);
-    li.appendChild(delBtn);
-    ulTodoList.appendChild(li);
-  })
+    return delBtn;
 }
+
 
 todoForm.addEventListener("submit", (event) => {
   event.preventDefault();
