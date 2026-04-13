@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>labb-2</title>
+    <script type="module" crossorigin src="/Labb2-Typescript/assets/index-C69n9tnl.js"></script>
+    <link rel="stylesheet" crossorigin href="/Labb2-Typescript/assets/index-C-Gfscr-.css">
+  </head>
+  <body>
+    <main>
+        <h1>Att-göra-lista</h1>
+        <p style="text-align:center;">Du måste fylla i både uppgiften prioriteringsnivå.</p>
+        <form id="todoForm">
+          <div class="formDiv">
+            <label for="task">Uppgift:</label>
+          <input id="task" placeholder="Fyll i uppgift...">
+          </div>
+          <div class="formDiv">
+          <label for="prio">Prioritet:</label>
+          <select id="prio">
+            <option value="" disabled selected>Välj prio-nivå</option>
+            <option value="1">1 (Låg)</option>
+            <option value="2">2 (Medel)</option>
+            <option value="3">3 (Hög)</option>
+          </select>
+          </div>
+          <button type="submit" class="add">Lägg till</button>
+        </form>
+        <hr>
+        <h2>Listan:</h2>
+        <ul id="todoList">
+
+        </ul>
+  </main>
+    <div id="app"></div>
+  </body>
+</html>
