@@ -30,11 +30,16 @@ class TodoList {
       alert("Kom ihåg att fylla i en uppgift!");
       return false;
     }
+    //validering för enbart korrekta värden i priority
     if(![1, 2, 3].includes(priority)){
       alert("Ogiltig prioritering! Välj antingen 1, 2 eller 3!");
       return false;
     }
-    //om allt är korrekt ifyllt, fortsätt med todo-uppgift
+    //om allt är korrekt ifyllt, fortsätt med todo-uppgift. 
+    //Sätt completed som false: när en uppgift läggs till är den inte färdig ännu
+    //Priority: priority as Prio --> säger till TypeScript behandla priority som typen Prio.
+    //inte super safe med as, men ok tillsammans med validering ->
+    //-> typescript blir tillsagd att lita på att jag vet bättre än den
     const newTodo: Todo = {
       task,
       completed: false,
@@ -111,12 +116,13 @@ function renderTodos(): void{
       li.style.color = "grey";
     }
 
+    //kalla på funktioner för knapparna/placera dem i li elementet
     li.appendChild(createDoneBtn(index));
     li.appendChild(createDelBtn(index));
     ulTodoList.appendChild(li);
   })
 }
-
+//funktioner för knapparna: skicka med ett index, så att rätt objekt hanteras av knapparna
 function createDoneBtn(index: number){
   const doneBtn = document.createElement("button");
     doneBtn.textContent="✔";
@@ -126,7 +132,8 @@ function createDoneBtn(index: number){
       newTodoList.saveToLocalStorage();
       renderTodos();
     })
-    return doneBtn;
+  //returnera den färdiga knappen
+  return doneBtn;
 }
 
 function createDelBtn(index: number){
@@ -135,16 +142,16 @@ function createDelBtn(index: number){
     delBtn.classList.add("delete");
     delBtn.addEventListener("click", () => {
 
-      /*Hade detta innan deleteTodo i class TodoList:
+      /*Hade detta innan deleteTodo metoden i class TodoList:
       todoList.todos.splice(index, 1);*/
       newTodoList.deleteTodo(index);
       newTodoList.saveToLocalStorage();
       renderTodos();
     })
-    return delBtn;
+  return delBtn;
 }
 
-
+//pga en form har använts -> event.preventDefault, så att sidan inte laddas om och data försvinner
 todoForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const task = taskInput.value;
@@ -156,14 +163,18 @@ todoForm.addEventListener("submit", (event) => {
   }
   //gör om select värdet till nummer
   const priority = Number(prioValue);
+  //skapa variabel som tar både input och select värden och lägger till nytt objekt
   const add = newTodoList.addTodo(task, priority);
 
+  //om det finns en ok add, spara till localStorage, och ladda om renderTodos -> ladda om listan
   if(add){
     newTodoList.saveToLocalStorage();
     renderTodos();
 
+    //töm input och select så det går att starta "fresh" med ny att-göra-sak
     taskInput.value="";
     prioSelect.value = "";
   }
 })
+//kalla på renderTodos för att visa hela existerande listan
 renderTodos()
