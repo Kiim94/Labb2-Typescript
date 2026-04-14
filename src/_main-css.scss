@@ -50,17 +50,18 @@ button{
     margin:0 auto;
     padding:0.5rem;
     cursor:pointer;
+    font-weight:bold;
     border-radius:20px;
     border:none;
     box-shadow: 0 6px 0 rgba(0,0,0,0.4);
     margin-bottom:1rem;
-    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.3s ease;
     &:active{
         transform: translateY(2px);
-        box-shadow: 0 3px 0 rgba(0,0,0,0.4);
+        box-shadow: 0 3px 0 rgba(0, 0, 0, 0.637);
     }
     &:hover{
-
+      background-color:rgb(194, 194, 194);
     }
   }
 .done{
